@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Good Looks Beauty Clinic | Findlay Creek, Ottawa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          cream:       '#F7F3EE',
+          warmwhite:   '#FDFAF7',
+          blush:       '#D4A896',
+          blushlight:  '#EDD5CB',
+          dustyrose:   '#B07D6E',
+          deep:        '#2C1F1A',
+          mid:         '#5C4037',
+          softgray:    '#9E8E87',
+          gold:        '#C9A96E',
+          goldlight:   '#E8D5B0',
+        },
+        fontFamily: {
+          serif:  ['Cormorant Garamond', 'Georgia', 'serif'],
+          sans:   ['Jost', 'sans-serif'],
+        },
+        keyframes: {
+          fadeUp:      { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
+          fadeIn:      { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+          float:       { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
+          marquee:     { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
+          spinSlow:    { from: { transform: 'rotate(0deg)' }, to: { transform: 'rotate(360deg)' } },
+          scrollPulse: { '0%,100%': { opacity: 1, transform: 'scaleY(1)' }, '50%': { opacity: 0.3, transform: 'scaleY(0.5)' } },
+        },
+        animation: {
+          'fade-up-1':   'fadeUp 0.8s ease forwards 0.2s',
+          'fade-up-2':   'fadeUp 0.8s ease forwards 0.4s',
+          'fade-up-3':   'fadeUp 0.8s ease forwards 0.6s',
+          'fade-up-4':   'fadeUp 0.8s ease forwards 0.8s',
+          'fade-up-5':   'fadeUp 0.8s ease forwards 1.0s',
+          'fade-in-hero':'fadeIn 1.2s ease forwards 0.3s',
+          'float':       'float 4s ease-in-out infinite',
+          'marquee':     'marquee 20s linear infinite',
+          'spin-slow':   'spinSlow 20s linear infinite',
+          'scroll-pulse':'scrollPulse 2s ease infinite',
+        },
+      },
+    },
+  }
+</script>
+<style>
+  /* Noise overlay — tiny SVG trick, no custom class needed in markup */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+  /* Scroll-reveal helper */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  /* Animated underline on service cards */
+  .service-card::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #B07D6E; transition: width 0.4s ease; }
+  .service-card:hover::after { width: 100%; }
+  /* Staggered reveal delays */
+  .delay-100 { transition-delay: 100ms; }
+  .delay-200 { transition-delay: 200ms; }
+  .delay-300 { transition-delay: 300ms; }
+</style>
+</head>
+<body class="font-sans bg-warmwhite text-deep overflow-x-hidden">
+
+<!-- ─── NAV ─── -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-12 py-6 bg-warmwhite/85 backdrop-blur-md border-b border-blush/20 transition-all duration-300">
+  <a href="#" class="font-serif text-xl font-semibold tracking-widest uppercase text-deep no-underline">
+    Good <span class="text-dustyrose">Looks</span>
+  </a>
+  <ul class="hidden md:flex gap-10 list-none">
+    <li><a href="#about"    class="text-xs tracking-[0.2em] uppercase text-mid hover:text-dustyrose transition-colors duration-200 no-underline">About</a></li>
+    <li><a href="#services" class="text-xs tracking-[0.2em] uppercase text-mid hover:text-dustyrose transition-colors duration-200 no-underline">Services</a></li>
+    <li><a href="#reviews"  class="text-xs tracking-[0.2em] uppercase text-mid hover:text-dustyrose transition-colors duration-200 no-underline">Reviews</a></li>
+    <li>
+      <a href="#booking" class="text-xs tracking-[0.2em] uppercase bg-deep text-cream px-5 py-2.5 hover:bg-dustyrose transition-colors duration-200 no-underline">
+        Book Now
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="min-h-screen grid md:grid-cols-2 pt-20">
+
+  <!-- Left -->
+  <div class="flex flex-col justify-center px-8 md:px-16 lg:px-20 py-24 relative z-10">
+
+    <div class="opacity-0 animate-fade-up-1 flex items-center gap-4 text-dustyrose text-[0.7rem] tracking-[0.35em] uppercase mb-8">
+      <span class="block w-10 h-px bg-blush"></span>
+      Findlay Creek's Trusted Beauty Clinic
+    </div>
+
+    <h1 class="opacity-0 animate-fade-up-2 font-serif font-light text-5xl lg:text-7xl leading-[1.05] text-deep mb-8">
+      Where you<br>look &amp; feel<br><em class="italic text-dustyrose">your best</em>
+    </h1>
+
+    <p class="opacity-0 animate-fade-up-3 font-light text-base leading-[1.8] text-softgray max-w-sm mb-12">
+      Professional, private, and deeply personal — Good Looks has been caring for Ottawa clients for over 25 years in a clean, welcoming studio tucked right in Findlay Creek.
+    </p>
+
+    <div class="opacity-0 animate-fade-up-4 flex gap-5 items-center flex-wrap">
+      <a href="#booking"
+         class="bg-deep text-cream text-[0.75rem] tracking-[0.2em] uppercase px-9 py-4 hover:bg-dustyrose hover:-translate-y-px transition-all duration-200 no-underline">
+        Book a Service
+      </a>
+      <a href="#services"
+         class="text-[0.75rem] tracking-[0.15em] uppercase text-mid hover:text-dustyrose transition-colors duration-200 no-underline flex items-center gap-2 group">
+        Explore Services
+        <span class="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+      </a>
+    </div>
+
+    <div class="opacity-0 animate-fade-up-5 flex items-center gap-5 mt-16">
+      <span class="text-gold text-base tracking-widest">★★★★★</span>
+      <div class="text-[0.75rem] text-softgray leading-relaxed">
+        <strong class="block text-mid font-medium">5.0 Google Rating</strong>
+        Consistently loved by the Findlay Creek community
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="hidden md:flex opacity-0 animate-fade-up-5 absolute bottom-10 left-20 flex-col items-center gap-2">
+      <span class="text-[0.6rem] tracking-[0.3em] uppercase text-softgray" style="writing-mode:vertical-rl">Scroll</span>
+      <span class="block w-px h-16 bg-gradient-to-b from-blush to-transparent animate-scroll-pulse"></span>
+    </div>
+  </div>
+
+  <!-- Right panel -->
+  <div class="relative overflow-hidden min-h-64 opacity-0 animate-fade-in-hero">
+    <!-- Background gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-blushlight via-blush to-dustyrose"></div>
+    <!-- Dot pattern -->
+    <div class="absolute inset-0 opacity-[0.08]"
+         style="background-image:radial-gradient(circle at 30% 70%,white 1px,transparent 1px),radial-gradient(circle at 70% 30%,white 1px,transparent 1px);background-size:40px 40px;">
+    </div>
+
+    <!-- Spinning year badge -->
+    <div class="animate-spin-slow absolute top-12 right-12 w-24 h-24 rounded-full bg-deep flex flex-col items-center justify-center z-10">
+      <span class="font-serif text-2xl font-light text-cream">25+</span>
+      <span class="text-[0.5rem] tracking-[0.2em] uppercase text-blushlight">Years</span>
+    </div>
+
+    <!-- Floating info card -->
+    <div class="animate-float absolute bottom-16 -left-4 md:left-0 lg:-left-8 bg-white px-8 py-6 shadow-2xl border-l-4 border-gold z-10">
+      <div class="text-[0.65rem] tracking-[0.2em] uppercase text-softgray mb-1">Serving Ottawa Since</div>
+      <div class="font-serif text-4xl font-semibold text-deep">1999</div>
+      <div class="text-sm text-dustyrose mt-1">Findlay Creek's Beauty Expert</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MARQUEE STRIP ─── -->
+<div class="bg-deep py-5 overflow-hidden">
+  <div class="flex gap-16 animate-marquee whitespace-nowrap w-max">
+    <!-- items × 2 for seamless loop -->
+    <template id="marquee-tmpl">
+      <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+        Electrolysis
+      </span>
+      <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+        Waxing
+      </span>
+      <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+        Facials
+      </span>
+      <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+        Dermaplaning
+      </span>
+      <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+        Microdermabrasion
+      </span>
+      <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+        Lash &amp; Brow
+      </span>
+      <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0">
+        <span class="w-1.5 h-1.5 rounded-full bg-gold shrink-0"></span>
+        Private Studio
+      </span>
+    </template>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Electrolysis</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Waxing</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Facials</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Dermaplaning</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Microdermabrasion</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Lash &amp; Brow</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Private Studio</span>
+    <!-- duplicate set -->
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Electrolysis</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Waxing</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Facials</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Dermaplaning</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Microdermabrasion</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Lash &amp; Brow</span>
+    <span class="inline-flex items-center gap-6 text-[0.7rem] tracking-[0.25em] uppercase text-blushlight shrink-0"><span class="w-1.5 h-1.5 rounded-full bg-gold"></span>Private Studio</span>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─── -->
+<section id="about" class="py-28 bg-cream">
+  <div class="max-w-6xl mx-auto px-8 lg:px-12">
+    <div class="grid md:grid-cols-2 gap-20 items-center">
+
+      <!-- Visual block -->
+      <div class="reveal relative h-[500px]">
+        <div class="absolute top-0 left-0 w-3/4 h-4/5 bg-gradient-to-br from-blushlight to-blush rounded-sm"></div>
+        <div class="absolute w-px h-20 bg-gradient-to-b from-transparent via-gold to-transparent top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <div class="absolute bottom-0 right-0 w-3/5 h-[55%] bg-warmwhite border border-blushlight shadow-xl flex flex-col items-center justify-center text-center p-8 rounded-sm">
+          <span class="font-serif text-6xl font-light text-dustyrose leading-none">25+</span>
+          <span class="text-[0.7rem] tracking-[0.2em] uppercase text-softgray mt-3 block">Years of Expert Care</span>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="reveal delay-100">
+        <div class="flex items-center gap-3 text-dustyrose text-[0.65rem] tracking-[0.35em] uppercase mb-4">
+          <span class="block w-8 h-px bg-blush"></span>Our Story
+        </div>
+        <h2 class="font-serif font-light text-4xl lg:text-5xl leading-[1.1] text-deep mb-6">
+          A clinic built on<br><em class="italic text-dustyrose">trust &amp; results</em>
+        </h2>
+        <p class="font-light text-base leading-[1.9] text-softgray mb-5">
+          For over 25 years, Kathy and the Good Looks team have been Ottawa's quietly trusted beauty experts.
+          <strong class="text-mid font-medium">No rushing, no upselling</strong> — just honest, skilled care delivered in a spotlessly clean, private setting.
+        </p>
+        <p class="font-light text-base leading-[1.9] text-softgray mb-10">
+          Located in the heart of Findlay Creek at 845 Pergola Place, we've become the place neighbours turn to when they want to look and feel refreshed — without ever feeling pressured or uncomfortable.
+        </p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="pt-4 border-t border-blushlight">
+            <div class="text-xl mb-1">🌿</div>
+            <div class="text-[0.75rem] font-medium tracking-[0.1em] uppercase text-deep mb-1">Private &amp; Relaxing</div>
+            <div class="text-[0.8rem] text-softgray leading-relaxed">One-on-one sessions in a calm, inviting studio</div>
+          </div>
+          <div class="pt-4 border-t border-blushlight">
+            <div class="text-xl mb-1">✨</div>
+            <div class="text-[0.75rem] font-medium tracking-[0.1em] uppercase text-deep mb-1">30+ Years Experience</div>
+            <div class="text-[0.8rem] text-softgray leading-relaxed">Deep expertise in electrolysis and aesthetics</div>
+          </div>
+          <div class="pt-4 border-t border-blushlight">
+            <div class="text-xl mb-1">💛</div>
+            <div class="text-[0.75rem] font-medium tracking-[0.1em] uppercase text-deep mb-1">Fair Pricing</div>
+            <div class="text-[0.8rem] text-softgray leading-relaxed">Quality care at prices that respect your budget</div>
+          </div>
+          <div class="pt-4 border-t border-blushlight">
+            <div class="text-xl mb-1">📍</div>
+            <div class="text-[0.75rem] font-medium tracking-[0.1em] uppercase text-deep mb-1">Locally Rooted</div>
+            <div class="text-[0.8rem] text-softgray leading-relaxed">A true Findlay Creek neighbour since 1999</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services" class="py-28 bg-warmwhite">
+  <div class="max-w-6xl mx-auto px-8 lg:px-12">
+
+    <div class="reveal flex flex-col md:flex-row md:justify-between md:items-end mb-16 gap-6">
+      <div>
+        <div class="flex items-center gap-3 text-dustyrose text-[0.65rem] tracking-[0.35em] uppercase mb-3">
+          <span class="block w-8 h-px bg-blush"></span>What We Offer
+        </div>
+        <h2 class="font-serif font-light text-4xl lg:text-5xl leading-[1.1] text-deep">
+          Our <em class="italic text-dustyrose">Services</em>
+        </h2>
+      </div>
+      <a href="#booking" class="self-start md:self-auto bg-deep text-cream text-[0.75rem] tracking-[0.2em] uppercase px-8 py-4 hover:bg-dustyrose transition-colors duration-200 no-underline">
+        Book a Session
+      </a>
+    </div>
+
+    <!-- Grid with hairline dividers -->
+    <div class="reveal grid md:grid-cols-3 border border-blushlight divide-y divide-blushlight md:divide-y-0">
+      <!-- Row 1 -->
+      <div class="service-card relative overflow-hidden bg-warmwhite p-10 hover:bg-cream transition-colors duration-300 md:border-r border-blushlight">
+        <div class="font-serif text-6xl font-light text-blushlight leading-none mb-4 transition-colors duration-300 group-hover:text-blush">01</div>
+        <div class="font-serif text-2xl font-normal text-deep mb-3">Electrolysis</div>
+        <p class="text-[0.82rem] font-light leading-[1.75] text-softgray mb-5">Permanent hair removal performed with 30+ years of expertise. Safe, precise, and effective for all skin types and hair colours — the only truly permanent solution.</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Face</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Body</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">All Skin Types</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Permanent</span>
+        </div>
+      </div>
+      <div class="service-card relative overflow-hidden bg-warmwhite p-10 hover:bg-cream transition-colors duration-300 md:border-r border-blushlight">
+        <div class="font-serif text-6xl font-light text-blushlight leading-none mb-4">02</div>
+        <div class="font-serif text-2xl font-normal text-deep mb-3">Waxing</div>
+        <p class="text-[0.82rem] font-light leading-[1.75] text-softgray mb-5">Smooth, thorough waxing with results that last. Our clients consistently note how comfortable and gentle the experience is — even for sensitive skin.</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Brows</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Lip &amp; Chin</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Legs</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Body</span>
+        </div>
+      </div>
+      <div class="service-card relative overflow-hidden bg-warmwhite p-10 hover:bg-cream transition-colors duration-300">
+        <div class="font-serif text-6xl font-light text-blushlight leading-none mb-4">03</div>
+        <div class="font-serif text-2xl font-normal text-deep mb-3">Facials &amp; Skincare</div>
+        <p class="text-[0.82rem] font-light leading-[1.75] text-softgray mb-5">Customized facial treatments to cleanse, refresh, and restore your skin. From classic facials to microdermabrasion and dermaplaning.</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Facials</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Dermaplaning</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Microderm</span>
+        </div>
+      </div>
+      <!-- Row 2 -->
+      <div class="service-card relative overflow-hidden bg-warmwhite p-10 hover:bg-cream transition-colors duration-300 md:border-t md:border-r border-blushlight">
+        <div class="font-serif text-6xl font-light text-blushlight leading-none mb-4">04</div>
+        <div class="font-serif text-2xl font-normal text-deep mb-3">Lash &amp; Brow</div>
+        <p class="text-[0.82rem] font-light leading-[1.75] text-softgray mb-5">Beautifully shaped brows and enhanced lashes that frame your face. Tinting, shaping, and threading services for natural, defined results.</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Tinting</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Shaping</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Threading</span>
+        </div>
+      </div>
+      <div class="service-card relative overflow-hidden bg-warmwhite p-10 hover:bg-cream transition-colors duration-300 md:border-t md:border-r border-blushlight">
+        <div class="font-serif text-6xl font-light text-blushlight leading-none mb-4">05</div>
+        <div class="font-serif text-2xl font-normal text-deep mb-3">Makeup</div>
+        <p class="text-[0.82rem] font-light leading-[1.75] text-softgray mb-5">Professional makeup application for any occasion — from bridal looks to special events. Natural enhancements that highlight your best features.</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Bridal</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Events</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Lessons</span>
+        </div>
+      </div>
+      <div class="service-card relative overflow-hidden bg-warmwhite p-10 hover:bg-cream transition-colors duration-300 md:border-t border-blushlight">
+        <div class="font-serif text-6xl font-light text-blushlight leading-none mb-4">06</div>
+        <div class="font-serif text-2xl font-normal text-deep mb-3">Foot Care</div>
+        <p class="text-[0.82rem] font-light leading-[1.75] text-softgray mb-5">Relaxing, restorative foot treatments that leave you feeling refreshed from the ground up. Clean, comfortable, and thoroughly professional.</p>
+        <div class="flex flex-wrap gap-1.5">
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Pedicure</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Foot Massage</span>
+          <span class="text-[0.65rem] tracking-[0.1em] uppercase text-dustyrose bg-blushlight px-2.5 py-1">Care</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TESTIMONIALS ─── -->
+<section id="reviews" class="py-28 bg-deep">
+  <div class="max-w-6xl mx-auto px-8 lg:px-12">
+
+    <div class="reveal flex items-center gap-3 text-blush text-[0.65rem] tracking-[0.35em] uppercase mb-4">
+      <span class="block w-8 h-px bg-blush"></span>Client Stories
+    </div>
+    <h2 class="reveal font-serif font-light text-4xl lg:text-5xl leading-[1.1] text-cream mb-16">
+      Loved by <em class="italic text-blush">our neighbours</em>
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-6">
+      <div class="reveal delay-100 bg-white/[0.04] border border-blush/15 p-8 hover:border-blush/40 transition-colors duration-300">
+        <div class="text-gold text-base tracking-widest mb-4">★★★★★</div>
+        <p class="font-serif text-lg font-light italic leading-[1.7] text-blushlight mb-6">
+          "Kathy is super professional and kind. She was able to squeeze me in with short notice. Her salon is neat, clean and feels inviting. The service was excellent."
+        </p>
+        <div class="text-[0.7rem] tracking-[0.15em] uppercase text-softgray">
+          <strong class="block text-blush font-medium mb-0.5">— Local Client</strong>
+          Google Review
+        </div>
+      </div>
+      <div class="reveal delay-200 bg-white/[0.04] border border-blush/15 p-8 hover:border-blush/40 transition-colors duration-300">
+        <div class="text-gold text-base tracking-widest mb-4">★★★★★</div>
+        <p class="font-serif text-lg font-light italic leading-[1.7] text-blushlight mb-6">
+          "I researched over 10 clinics in Ottawa until I found Kathy's clinic for electrolysis. I felt zero pain and her work is very professional. She has over 30 years of experience."
+        </p>
+        <div class="text-[0.7rem] tracking-[0.15em] uppercase text-softgray">
+          <strong class="block text-blush font-medium mb-0.5">— Verified Client</strong>
+          Google Review
+        </div>
+      </div>
+      <div class="reveal delay-300 bg-white/[0.04] border border-blush/15 p-8 hover:border-blush/40 transition-colors duration-300">
+        <div class="text-gold text-base tracking-widest mb-4">★★★★★</div>
+        <p class="font-serif text-lg font-light italic leading-[1.7] text-blushlight mb-6">
+          "Kathy makes you feel comfortable and beautiful in every service. She is professional and knowledgeable. I not only would recommend her — I wouldn't go anywhere else."
+        </p>
+        <div class="text-[0.7rem] tracking-[0.15em] uppercase text-softgray">
+          <strong class="block text-blush font-medium mb-0.5">— Long-time Client</strong>
+          Google Review
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── BOOKING ─── -->
+<section id="booking" class="py-28 relative overflow-hidden" style="background: linear-gradient(135deg, #EDD5CB 0%, #FDFAF7 60%)">
+  <!-- Radial glow -->
+  <div class="absolute -top-40 -right-20 w-[500px] h-[500px] rounded-full opacity-30"
+       style="background:radial-gradient(circle,#D4A896 0%,transparent 70%)">
+  </div>
+
+  <div class="max-w-6xl mx-auto px-8 lg:px-12 relative z-10">
+    <div class="grid md:grid-cols-2 gap-20 items-center">
+
+      <!-- Info side -->
+      <div class="reveal">
+        <div class="flex items-center gap-3 text-dustyrose text-[0.65rem] tracking-[0.35em] uppercase mb-4">
+          <span class="block w-8 h-px bg-blush"></span>Get in Touch
+        </div>
+        <h2 class="font-serif font-light text-4xl lg:text-5xl leading-[1.1] text-deep mb-12">
+          Ready to<br><em class="italic text-dustyrose">feel your best?</em>
+        </h2>
+
+        <div class="space-y-7">
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 bg-deep flex items-center justify-center text-base shrink-0">📍</div>
+            <div>
+              <div class="text-[0.65rem] tracking-[0.2em] uppercase text-softgray mb-1">Location</div>
+              <div class="text-[0.95rem] text-deep leading-relaxed">845 Pergola Place, Ottawa<br>Just south of Bank St &amp; Leitrim Rd</div>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 bg-deep flex items-center justify-center text-base shrink-0">📞</div>
+            <div>
+              <div class="text-[0.65rem] tracking-[0.2em] uppercase text-softgray mb-1">Phone</div>
+              <a href="tel:6138221478" class="text-[0.95rem] text-deep no-underline hover:text-dustyrose">(613) 822-1478</a>
+            </div>
+          </div>
+          <div class="flex gap-5 items-start">
+            <div class="w-10 h-10 bg-deep flex items-center justify-center text-base shrink-0">🕐</div>
+            <div>
+              <div class="text-[0.65rem] tracking-[0.2em] uppercase text-softgray mb-1">Hours</div>
+              <div class="text-[0.95rem] text-deep leading-loose">
+                Mon, Wed, Fri: 8:00 AM – 6:00 PM<br>
+                Tue &amp; Thu: 8:00 AM – 8:00 PM<br>
+                Sat: 8:00 AM – 2:00 PM
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Form side -->
+      <div class="reveal delay-100 bg-white p-10 shadow-2xl">
+        <div class="font-serif font-light text-3xl text-deep mb-1">Request a Booking</div>
+        <div class="text-[0.8rem] text-softgray mb-8">We'll get back to you within one business day.</div>
+
+        <div class="grid grid-cols-2 gap-4 mb-4">
+          <div>
+            <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">First Name</label>
+            <input type="text" placeholder="Kathy"
+                   class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
+          </div>
+          <div>
+            <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">Last Name</label>
+            <input type="text" placeholder="Smith"
+                   class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
+          </div>
+        </div>
+        <div class="mb-4">
+          <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">Phone or Email</label>
+          <input type="text" placeholder="(613) 000-0000"
+                 class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
+        </div>
+        <div class="mb-4">
+          <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">Service</label>
+          <select class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors appearance-none">
+            <option value="">Select a service…</option>
+            <option>Electrolysis</option>
+            <option>Waxing</option>
+            <option>Facial / Skincare</option>
+            <option>Lash &amp; Brow</option>
+            <option>Makeup</option>
+            <option>Foot Care</option>
+            <option>Not sure — please advise</option>
+          </select>
+        </div>
+        <div class="mb-6">
+          <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">Message (optional)</label>
+          <textarea rows="3" placeholder="Anything you'd like us to know…"
+                    class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors resize-none"></textarea>
+        </div>
+        <button class="w-full bg-deep text-cream text-[0.75rem] tracking-[0.2em] uppercase py-4 hover:bg-dustyrose transition-colors duration-200">
+          Send Request
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="bg-deep pt-16 pb-8 border-t border-blush/10">
+  <div class="max-w-6xl mx-auto px-8 lg:px-12">
+    <div class="grid md:grid-cols-3 gap-12 mb-12">
+      <div>
+        <div class="font-serif text-2xl font-semibold tracking-widest uppercase text-cream mb-4">
+          Good <span class="text-blush">Looks</span> Beauty Clinic
+        </div>
+        <div class="font-serif italic text-[0.9rem] text-softgray leading-relaxed">
+          "For over 25 years, helping people look and feel their best."
+        </div>
+      </div>
+      <div>
+        <div class="text-[0.65rem] tracking-[0.25em] uppercase text-blush mb-5">Services</div>
+        <ul class="space-y-3 list-none">
+          <li><a href="#services" class="text-[0.85rem] text-softgray hover:text-blushlight transition-colors no-underline">Electrolysis</a></li>
+          <li><a href="#services" class="text-[0.85rem] text-softgray hover:text-blushlight transition-colors no-underline">Waxing</a></li>
+          <li><a href="#services" class="text-[0.85rem] text-softgray hover:text-blushlight transition-colors no-underline">Facials</a></li>
+          <li><a href="#services" class="text-[0.85rem] text-softgray hover:text-blushlight transition-colors no-underline">Lash &amp; Brow</a></li>
+          <li><a href="#services" class="text-[0.85rem] text-softgray hover:text-blushlight transition-colors no-underline">Makeup</a></li>
+          <li><a href="#services" class="text-[0.85rem] text-softgray hover:text-blushlight transition-colors no-underline">Foot Care</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="text-[0.65rem] tracking-[0.25em] uppercase text-blush mb-5">Visit Us</div>
+        <ul class="space-y-3 list-none">
+          <li><span class="text-[0.85rem] text-softgray">845 Pergola Place</span></li>
+          <li><span class="text-[0.85rem] text-softgray">Ottawa, ON K1T 0T8</span></li>
+          <li><a href="tel:6138221478" class="text-[0.85rem] text-softgray hover:text-blushlight transition-colors no-underline">(613) 822-1478</a></li>
+          <li class="pt-2"><a href="#booking" class="text-[0.85rem] text-blush hover:text-blushlight transition-colors no-underline">Book a Service →</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-blush/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="text-[0.75rem] tracking-[0.1em] text-softgray/60">© 2025 Good Looks Beauty Clinic · Findlay Creek, Ottawa</div>
+      <div class="font-serif italic text-[0.85rem] text-blush/40">Professional · Private · Personal</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll-reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Nav shrink on scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('py-3', window.scrollY > 50);
+    navbar.classList.toggle('py-6', window.scrollY <= 50);
+  });
+</script>
+</body>
+</html>
