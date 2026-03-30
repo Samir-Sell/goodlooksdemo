@@ -5,52 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Good Looks Beauty Clinic | Findlay Creek, Ottawa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    theme: {
-      extend: {
-        colors: {
-          cream:       '#F7F3EE',
-          warmwhite:   '#FDFAF7',
-          blush:       '#D4A896',
-          blushlight:  '#EDD5CB',
-          dustyrose:   '#B07D6E',
-          deep:        '#2C1F1A',
-          mid:         '#5C4037',
-          softgray:    '#9E8E87',
-          gold:        '#C9A96E',
-          goldlight:   '#E8D5B0',
-        },
-        fontFamily: {
-          serif:  ['Cormorant Garamond', 'Georgia', 'serif'],
-          sans:   ['Jost', 'sans-serif'],
-        },
-        keyframes: {
-          fadeUp:      { '0%': { opacity: 0, transform: 'translateY(24px)' }, '100%': { opacity: 1, transform: 'translateY(0)' } },
-          fadeIn:      { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
-          float:       { '0%,100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-8px)' } },
-          marquee:     { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } },
-          spinSlow:    { from: { transform: 'rotate(0deg)' }, to: { transform: 'rotate(360deg)' } },
-          scrollPulse: { '0%,100%': { opacity: 1, transform: 'scaleY(1)' }, '50%': { opacity: 0.3, transform: 'scaleY(0.5)' } },
-        },
-        animation: {
-          'fade-up-1':   'fadeUp 0.8s ease forwards 0.2s',
-          'fade-up-2':   'fadeUp 0.8s ease forwards 0.4s',
-          'fade-up-3':   'fadeUp 0.8s ease forwards 0.6s',
-          'fade-up-4':   'fadeUp 0.8s ease forwards 0.8s',
-          'fade-up-5':   'fadeUp 0.8s ease forwards 1.0s',
-          'fade-in-hero':'fadeIn 1.2s ease forwards 0.3s',
-          'float':       'float 4s ease-in-out infinite',
-          'marquee':     'marquee 20s linear infinite',
-          'spin-slow':   'spinSlow 20s linear infinite',
-          'scroll-pulse':'scrollPulse 2s ease infinite',
-        },
-      },
-    },
-  }
-</script>
+
 <style>
   /* Noise overlay — tiny SVG trick, no custom class needed in markup */
   body::before {
@@ -141,12 +98,14 @@
 
   <!-- Right panel -->
   <div class="relative overflow-hidden min-h-64 opacity-0 animate-fade-in-hero">
-    <!-- Background gradient -->
-    <div class="absolute inset-0 bg-gradient-to-br from-blushlight via-blush to-dustyrose"></div>
-    <!-- Dot pattern -->
-    <div class="absolute inset-0 opacity-[0.08]"
-         style="background-image:radial-gradient(circle at 30% 70%,white 1px,transparent 1px),radial-gradient(circle at 70% 30%,white 1px,transparent 1px);background-size:40px 40px;">
-    </div>
+    <!-- Hero photo -->
+    <img
+      src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=900&q=80&auto=format&fit=crop"
+      alt="Elegant beauty salon interior"
+      class="absolute inset-0 w-full h-full object-cover"
+    >
+    <!-- Warm tint overlay -->
+    <div class="absolute inset-0 bg-dustyrose/20"></div>
 
     <!-- Spinning year badge -->
     <div class="animate-spin-slow absolute top-12 right-12 w-24 h-24 rounded-full bg-deep flex flex-col items-center justify-center z-10">
@@ -222,8 +181,18 @@
 
       <!-- Visual block -->
       <div class="reveal relative h-[500px]">
-        <div class="absolute top-0 left-0 w-3/4 h-4/5 bg-gradient-to-br from-blushlight to-blush rounded-sm"></div>
+        <!-- Main photo -->
+        <div class="absolute top-0 left-0 w-3/4 h-4/5 overflow-hidden rounded-sm shadow-lg">
+          <img
+            src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&q=80&auto=format&fit=crop"
+            alt="Professional skincare treatment"
+            class="w-full h-full object-cover"
+          >
+          <div class="absolute inset-0 bg-dustyrose/10"></div>
+        </div>
+        <!-- Gold rule -->
         <div class="absolute w-px h-20 bg-gradient-to-b from-transparent via-gold to-transparent top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        <!-- Stat card -->
         <div class="absolute bottom-0 right-0 w-3/5 h-[55%] bg-warmwhite border border-blushlight shadow-xl flex flex-col items-center justify-center text-center p-8 rounded-sm">
           <span class="font-serif text-6xl font-light text-dustyrose leading-none">25+</span>
           <span class="text-[0.7rem] tracking-[0.2em] uppercase text-softgray mt-3 block">Years of Expert Care</span>
@@ -456,47 +425,98 @@
 
       <!-- Form side -->
       <div class="reveal delay-100 bg-white p-10 shadow-2xl">
-        <div class="font-serif font-light text-3xl text-deep mb-1">Request a Booking</div>
-        <div class="text-[0.8rem] text-softgray mb-8">We'll get back to you within one business day.</div>
 
-        <div class="grid grid-cols-2 gap-4 mb-4">
-          <div>
-            <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">First Name</label>
-            <input type="text" placeholder="Kathy"
-                   class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
-          </div>
-          <div>
-            <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">Last Name</label>
-            <input type="text" placeholder="Smith"
-                   class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
-          </div>
+        <!-- Default state: form -->
+        <div id="booking-form-wrap">
+          <div class="font-serif font-light text-3xl text-deep mb-1">Request a Booking</div>
+          <div class="text-[0.8rem] text-softgray mb-8">We'll get back to you within one business day.</div>
+
+          <form id="booking-form" novalidate>
+            <!-- Web3Forms hidden fields -->
+            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+            <input type="hidden" name="subject"    value="New Booking Request — Good Looks Beauty Clinic">
+            <input type="hidden" name="from_name"  value="Good Looks Website">
+            <!-- Honeypot spam filter -->
+            <input type="checkbox" name="botcheck" style="display:none">
+
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div>
+                <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5" for="first_name">First Name</label>
+                <input id="first_name" name="first_name" type="text" placeholder="Kathy" required
+                       class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
+              </div>
+              <div>
+                <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5" for="last_name">Last Name</label>
+                <input id="last_name" name="last_name" type="text" placeholder="Smith" required
+                       class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
+              </div>
+            </div>
+            <div class="mb-4">
+              <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5" for="contact">Phone or Email</label>
+              <input id="contact" name="contact" type="text" placeholder="(613) 000-0000" required
+                     class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
+            </div>
+            <div class="mb-4">
+              <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5" for="service">Service</label>
+              <select id="service" name="service" required
+                      class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors appearance-none">
+                <option value="">Select a service…</option>
+                <option>Electrolysis</option>
+                <option>Waxing</option>
+                <option>Facial / Skincare</option>
+                <option>Lash &amp; Brow</option>
+                <option>Makeup</option>
+                <option>Foot Care</option>
+                <option>Not sure — please advise</option>
+              </select>
+            </div>
+            <div class="mb-6">
+              <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5" for="message">Message (optional)</label>
+              <textarea id="message" name="message" rows="3" placeholder="Anything you'd like us to know…"
+                        class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors resize-none"></textarea>
+            </div>
+
+            <!-- Validation error -->
+            <p id="form-error" class="hidden text-[0.75rem] text-red-500 mb-3">Please fill in all required fields.</p>
+
+            <button id="submit-btn" type="submit"
+                    class="w-full bg-deep text-cream text-[0.75rem] tracking-[0.2em] uppercase py-4 hover:bg-dustyrose transition-colors duration-200 flex items-center justify-center gap-3 disabled:opacity-60 disabled:cursor-not-allowed">
+              <span id="btn-label">Send Request</span>
+              <!-- Spinner (hidden by default) -->
+              <svg id="btn-spinner" class="hidden animate-spin w-4 h-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+              </svg>
+            </button>
+          </form>
         </div>
-        <div class="mb-4">
-          <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">Phone or Email</label>
-          <input type="text" placeholder="(613) 000-0000"
-                 class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors">
+
+        <!-- Success state (hidden until submission) -->
+        <div id="booking-success" class="hidden flex flex-col items-center justify-center text-center py-12 gap-5">
+          <div class="w-16 h-16 rounded-full bg-blushlight flex items-center justify-center text-3xl">✓</div>
+          <div class="font-serif text-2xl font-light text-deep">Request Sent!</div>
+          <p class="text-[0.9rem] text-softgray leading-relaxed max-w-xs">
+            Thanks — Kathy will be in touch within one business day to confirm your appointment.
+          </p>
+          <button onclick="resetForm()"
+                  class="mt-2 text-[0.75rem] tracking-[0.15em] uppercase text-dustyrose hover:text-mid transition-colors">
+            Send another request
+          </button>
         </div>
-        <div class="mb-4">
-          <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">Service</label>
-          <select class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors appearance-none">
-            <option value="">Select a service…</option>
-            <option>Electrolysis</option>
-            <option>Waxing</option>
-            <option>Facial / Skincare</option>
-            <option>Lash &amp; Brow</option>
-            <option>Makeup</option>
-            <option>Foot Care</option>
-            <option>Not sure — please advise</option>
-          </select>
+
+        <!-- Error state (hidden until failure) -->
+        <div id="booking-network-error" class="hidden flex flex-col items-center justify-center text-center py-12 gap-5">
+          <div class="w-16 h-16 rounded-full bg-red-50 flex items-center justify-center text-3xl">✕</div>
+          <div class="font-serif text-2xl font-light text-deep">Something went wrong</div>
+          <p class="text-[0.9rem] text-softgray leading-relaxed max-w-xs">
+            Please try again, or call us directly at <a href="tel:6138221478" class="text-dustyrose">(613) 822-1478</a>.
+          </p>
+          <button onclick="resetForm()"
+                  class="mt-2 text-[0.75rem] tracking-[0.15em] uppercase text-dustyrose hover:text-mid transition-colors">
+            Try again
+          </button>
         </div>
-        <div class="mb-6">
-          <label class="block text-[0.65rem] tracking-[0.2em] uppercase text-mid mb-1.5">Message (optional)</label>
-          <textarea rows="3" placeholder="Anything you'd like us to know…"
-                    class="w-full px-4 py-3 border border-blushlight bg-warmwhite font-sans text-[0.9rem] text-deep outline-none focus:border-dustyrose transition-colors resize-none"></textarea>
-        </div>
-        <button class="w-full bg-deep text-cream text-[0.75rem] tracking-[0.2em] uppercase py-4 hover:bg-dustyrose transition-colors duration-200">
-          Send Request
-        </button>
+
       </div>
 
     </div>
@@ -544,6 +564,69 @@
 </footer>
 
 <script>
+  // ── Web3Forms submission ──────────────────────────────────────────
+  const form        = document.getElementById('booking-form');
+  const submitBtn   = document.getElementById('submit-btn');
+  const btnLabel    = document.getElementById('btn-label');
+  const btnSpinner  = document.getElementById('btn-spinner');
+  const formWrap    = document.getElementById('booking-form-wrap');
+  const successEl   = document.getElementById('booking-success');
+  const networkErr  = document.getElementById('booking-network-error');
+  const formError   = document.getElementById('form-error');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    formError.classList.add('hidden');
+
+    // Basic client-side validation
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+    required.forEach(el => {
+      if (!el.value.trim()) { el.style.borderColor = '#ef4444'; valid = false; }
+      else el.style.borderColor = '';
+    });
+    if (!valid) { formError.classList.remove('hidden'); return; }
+
+    // Loading state
+    submitBtn.disabled = true;
+    btnLabel.textContent = 'Sending…';
+    btnSpinner.classList.remove('hidden');
+
+    try {
+      const data = Object.fromEntries(new FormData(form));
+      const res  = await fetch('https://api.web3forms.com/submit', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body:    JSON.stringify(data),
+      });
+      const json = await res.json();
+
+      if (res.ok && json.success) {
+        formWrap.classList.add('hidden');
+        successEl.classList.remove('hidden');
+      } else {
+        throw new Error(json.message || 'Submission failed');
+      }
+    } catch (err) {
+      console.error(err);
+      formWrap.classList.add('hidden');
+      networkErr.classList.remove('hidden');
+    }
+  });
+
+  function resetForm() {
+    form.reset();
+    submitBtn.disabled = false;
+    btnLabel.textContent = 'Send Request';
+    btnSpinner.classList.add('hidden');
+    formError.classList.add('hidden');
+    successEl.classList.add('hidden');
+    networkErr.classList.add('hidden');
+    formWrap.classList.remove('hidden');
+  }
+  window.resetForm = resetForm;
+  // ─────────────────────────────────────────────────────────────────
+
   // Scroll-reveal
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
